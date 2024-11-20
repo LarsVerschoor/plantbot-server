@@ -9,21 +9,14 @@ module.exports = {
 				primaryKey: true,
 				type: Sequelize.BIGINT
 			},
-			username: {
-				allowNull: false,
-				type: Sequelize.STRING
-			},
 			password: {
 				allowNull: false,
 				type: Sequelize.STRING
 			},
 			email: {
 				allowNull: false,
-				type: Sequelize.STRING
-			},
-			csrfToken: {
-				allowNull: false,
-				type: Sequelize.STRING
+				type: Sequelize.STRING,
+				unique: true
 			},
 			createdAt: {
 				allowNull: false,

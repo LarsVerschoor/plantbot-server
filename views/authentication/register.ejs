@@ -1,0 +1,21 @@
+<h2>Register</h2>
+
+<form action="" id="register" method="post">
+    <div class="form-row">
+        <label for="email">Email-address</label>
+        <input type="text" name="email" id="email">
+        <div class="error" id="email-error"></div>
+    </div>
+    <div class="form-row">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password">
+        <div class="error" id="password-error"></div>
+    </div>
+    <div class="form-row">
+        <input type="submit" value="Register">
+    </div>
+</form>
+
+<div>Or <a href="/login">login to your account</a></div>
+
+<% scripts=[ '/public/js/register.js' ] %>

@@ -1,12 +1,24 @@
 const express = require('express');
 const http = require('http');
-const webRouter = require('./routers/web');
+const cookieParser = require('cookie-parser');
+const sessionMiddleware = require('./middlewares/session');
+const router = require('./routers');
+const expressLayouts = require('express-ejs-layouts');
+const bodyParser = require('body-parser');
 
 const app = express();
 const server = http.createServer(app);
 
+app.use('/public', express.static('public'));
+app.use(expressLayouts);
 app.set('view engine', 'ejs');
-app.use('/', webRouter);
+app.set('layout', false);
+
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(sessionMiddleware);
+app.use('/', router);
 
 server.listen(5000);
 console.log('HTTP server is listening on post 5000');

@@ -9,11 +9,18 @@ module.exports = {
 				primaryKey: true,
 				type: Sequelize.BIGINT
 			},
-			uuid: {
+			sessionToken: {
+				allowNull: false,
+				type: Sequelize.STRING,
+				unique: true
+			},
+			csrfToken: {
 				allowNull: false,
 				type: Sequelize.STRING
 			},
 			userId: {
+				allowNull: true,
+				defaultValue: null,
 				type: Sequelize.BIGINT,
 				references: {
 					model: 'Users',
@@ -22,11 +29,15 @@ module.exports = {
 				onUpdate: 'CASCADE',
 				onDelete: 'CASCADE'
 			},
+			expiresAt: {
+				allowNull: false,
+				type: Sequelize.DATE
+			},
 			createdAt: {
 				allowNull: false,
 				type: Sequelize.DATE
 			},
-			expiresAt: {
+			updatedAt: {
 				allowNull: false,
 				type: Sequelize.DATE
 			}

@@ -6,7 +6,8 @@ module.exports = {
 		await queryInterface.addColumn('users', 'connectId', {
 			type: Sequelize.STRING,
 			defaultValue: null,
-			allowNull: true
+			allowNull: true,
+			unique: true
 		});
 	},
 

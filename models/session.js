@@ -16,7 +16,8 @@ module.exports = (sequelize, DataTypes) => {
 	}
 	Session.init(
 		{
-			uuid: DataTypes.STRING,
+			sessionToken: DataTypes.STRING,
+			csrfToken: DataTypes.STRING,
 			userId: DataTypes.BIGINT,
 			expiresAt: DataTypes.DATE
 		},
