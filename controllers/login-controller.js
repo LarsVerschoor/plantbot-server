@@ -12,7 +12,7 @@ const loginController = async (req, res, next) => {
 		const errors = [];
 		const { email, password } = req.body;
 		const user = await models.User.findOne({
-			where: { email }
+			where: { email, emailVerified: true }
 		});
 
 		if (!user) {
