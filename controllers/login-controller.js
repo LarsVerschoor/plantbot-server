@@ -1,7 +1,6 @@
 const models = require('../models');
 const bcrypt = require('bcrypt');
 const Invalid = require('../utils/Invalid');
-require('dotenv');
 
 // Dummy hash to compare the password to when the email does not exist in the database. To prevent timing attacks.
 const DUMMY_HASH = bcrypt.hashSync('dummyPassword', parseInt(process.env.BCRYPT_HASH_ROUNDS, 10));

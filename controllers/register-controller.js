@@ -2,10 +2,8 @@ const bcrypt = require('bcrypt');
 const models = require('../models');
 const { v4: uuidv4 } = require('uuid');
 const nodemailer = require('nodemailer');
-require('dotenv');
 
 const SALT_ROUNDS = parseInt(process.env.BCRYPT_HASH_ROUNDS, 10);
-
 const transporter = nodemailer.createTransport({
 	service: process.env.EMAIL_SERVICE,
 	auth: {
