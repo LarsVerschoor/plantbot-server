@@ -1,6 +1,10 @@
 window.addEventListener('load', () => {
 	const form = document.getElementById('login');
 	const elements = {
+		general: {
+			input: null,
+			error: document.getElementById('general-error')
+		},
 		email: {
 			input: document.getElementById('email'),
 			error: document.getElementById('email-error')
