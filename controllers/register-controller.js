@@ -23,7 +23,6 @@ const registerController = async (req, res) => {
 		const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
 		const verificationCode = crypto.randomBytes(3).toString('hex');
 		const hashedVerificationCode = await bcrypt.hash(verificationCode, SALT_ROUNDS);
-		console.log(verificationCode);
 		const pendingRegistration = await models.pendingRegistration.create({
 			email,
 			password: hashedPassword,
