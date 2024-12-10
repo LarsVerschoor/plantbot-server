@@ -4,14 +4,14 @@ const Invalid = require('../utils/Invalid');
 
 // Dummy hash to compare the password to when the email does not exist in the database. To prevent timing attacks.
 const DUMMY_HASH = bcrypt.hashSync('dummyPassword', parseInt(process.env.BCRYPT_HASH_ROUNDS, 10));
-const INVALID_CREDENTIALS_ERROR = new Invalid('general', 'The provided username or password is incorrect.');
+const INVALID_CREDENTIALS_ERROR = new Invalid('general', 'The submitted username or password is incorrect.');
 
-const loginController = async (req, res, next) => {
+const loginController = async (req, res) => {
 	try {
 		const errors = [];
 		const { email, password } = req.body;
 		const user = await models.User.findOne({
-			where: { email, emailVerified: true }
+			where: { email }
 		});
 
 		if (!user) {

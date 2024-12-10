@@ -21,7 +21,7 @@ app.use(sessionMiddleware);
 app.use('/', router);
 
 server.listen(5000);
-console.log('HTTP server is listening on post 5000');
+console.log('HTTP server is listening on port 5000');
 
 // const WebSocket = require('ws');
 // const wss = new WebSocket.Server({ port: 5001 });

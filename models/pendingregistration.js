@@ -1,33 +1,29 @@
 'use strict';
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-	class Session extends Model {
+	class pendingRegistration extends Model {
 		/**
 		 * Helper method for defining associations.
 		 * This method is not a part of Sequelize lifecycle.
 		 * The `models/index` file will call this method automatically.
 		 */
 		static associate(models) {
-			this.belongsTo(models.User, {
-				foreignKey: 'userId',
-				as: 'user'
-			});
-			this.belongsTo(models.pendingRegistration, {
+			this.hasOne(models.Session, {
 				foreignKey: 'registrationId',
-				as: 'pendingRegistration'
+				as: 'session'
 			});
 		}
 	}
-	Session.init(
+	pendingRegistration.init(
 		{
-			sessionToken: DataTypes.STRING,
-			csrfToken: DataTypes.STRING,
-			expiresAt: DataTypes.DATE
+			email: DataTypes.STRING,
+			password: DataTypes.STRING,
+			verificationCode: DataTypes.STRING
 		},
 		{
 			sequelize,
-			modelName: 'Session'
+			modelName: 'pendingRegistration'
 		}
 	);
-	return Session;
+	return pendingRegistration;
 };

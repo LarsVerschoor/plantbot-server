@@ -1,21 +1,32 @@
-<h2>Login</h2>
-
-<form action="" id="login" method="post">
-    <div class="error" id="general-error"></div>
-    <div class="form-row">
-        <label for="email">Email-address</label>
-        <input type="text" name="email" id="email">
-        <div class="error" id="email-error"></div>
+<section class="authentication">
+    <div class="authentication__header">
+        <img class="authentication__logo" src="public/images/logo_plantbot_full.svg" alt="PlantBot Logo">
+        <div class="authentication__instructions">Log in to your PlantBot account</div>
     </div>
-    <div class="form-row">
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password">
-        <div class="error" id="password-error"></div>
-    </div>
-    <div class="form-row">
-        <input type="submit" value="Login">
-    </div>
-</form>
-<div>Or <a href="/register">create your account</a></div>
+    
+    <form class="authentication__body" action="" id="login" method="post">
+        <div class="authentication__error" id="general-error"></div>
+        <div class="authentication__form-row">
+            <label for="email">Email-address</label>
+            <input type="text" name="email" id="email">
+            <div class="authentication__error" id="email-error"></div>
+        </div>
+        <div class="authentication__form-row">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password">
+            <div class="authentication__error" id="password-error"></div>
+        </div>
+        <div class="authentication__form-row">
+            <input type="checkbox" name="remember" id="remember">
+            <label for="remember" class="checkbox">Keep me logged in for 30 days</label>
+        </div>
+        <div class="authentication__form-row">
+            <input class="authentication__submit" type="submit" value="Log in">
+        </div>
+        <div class="authentication__form-row">
+            <div class="authentication__link">Don't have an account? <a href="/register">Sign up</a></div>
+        </div>
+    </form>
+</section>
 
 <% scripts=[ '/public/js/login.js' ] %>

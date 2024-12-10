@@ -7,23 +7,31 @@ const sessionMiddleware = async (req, res, next) => {
 	try {
 		if (req.cookies.session_token) {
 			const session = await models.Session.findOne({
-				where: { sessionToken: req.cookies.session_token }
+				where: { sessionToken: req.cookies.session_token },
+				include: [
+					{
+						model: models.User,
+						as: 'user',
+						required: false
+					},
+					{
+						model: models.pendingRegistration,
+						as: 'pendingRegistration',
+						required: false
+					}
+				]
 			});
-
 			if (session) {
 				req.session = session;
 				return next();
 			}
 		}
-
-		req.session = (
-			await models.Session.create({
-				sessionToken: uuidv4(),
-				csrfToken: uuidv4(),
-				expiresAt: new Date(Date.now() + SESSION_EXPIRATION_MS),
-				userId: null
-			})
-		).dataValues;
+		req.session = await models.Session.create({
+			sessionToken: uuidv4(),
+			csrfToken: uuidv4(),
+			expiresAt: new Date(Date.now() + SESSION_EXPIRATION_MS),
+			userId: null
+		});
 
 		res.cookie('session_token', req.session.sessionToken, {
 			httpOnly: true,

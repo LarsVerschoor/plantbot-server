@@ -1,4 +1,21 @@
-<h2>Verify your PlantBot account</h2>
-<button id="verify">Verify</button>
+<section class="authentication">
+    <div class="authentication__header">
+        <img class="authentication__logo" src="public/images/logo_plantbot_full.svg" alt="PlantBot Logo">
+        <div class="authentication__instructions">Enter your verification code</div>
+    </div>
+
+    <form class="authentication__body" action="" id="verify" method="post">
+        <div class="authentication__error" id="general-error"></div>
+        <div class="authentication__form-row">
+            <label for="verification">Please enter the 6-character code that we sent via e-mail to <span><%= email %></span></label>
+            <input type="text" name="verification" id="verification">
+            <div class="authentication__error" id="verification-error"></div>
+        </div>
+        <div class="authentication__form-row">
+            <input class="authentication__submit" type="submit" value="Verify your account">
+        </div>
+    </form>
+
+</section>
 
 <% scripts=[ '/public/js/verify-account.js' ] %>

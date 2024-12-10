@@ -28,7 +28,7 @@ window.addEventListener('load', () => {
 		});
 
 		if (response.ok) {
-			window.location.href = '/';
+			window.location.href = '/verify-account';
 		} else {
 			const errors = (await response.json()).errors;
 

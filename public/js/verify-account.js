@@ -1,23 +1,37 @@
-const init = () => {
-	const csrfToken = document.querySelector('meta[name=csrf-token]').getAttribute('content');
-	const verifyButton = document.getElementById('verify');
+window.addEventListener('load', () => {
+	const form = document.getElementById('verify');
+	const elements = {
+		verification: {
+			input: document.getElementById('verification'),
+			error: document.getElementById('verification-error')
+		}
+	};
 
-	verifyButton.addEventListener('click', async () => {
-		const response = await fetch(window.location.href, {
+	const csrfToken = document.querySelector('meta[name=csrf-token]').getAttribute('content');
+	form.addEventListener('submit', async (e) => {
+		e.preventDefault();
+
+		const response = await fetch('/verify-account', {
 			method: 'post',
 			headers: {
-				'X-CSRF-Token': csrfToken
-			}
+				'X-CSRF-Token': csrfToken,
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				verification: elements.verification.input.value
+			})
 		});
 
 		if (response.ok) {
-			window.location.href = '/login';
+			window.location.href = '/';
 		} else {
-			console.error(response);
+			const errors = (await response.json()).errors;
+
+			if (errors) {
+				errors.forEach((error) => {
+					elements[error.field].error.innerText = error.message;
+				});
+			}
 		}
 	});
-};
-
-window.addEventListener('load', () => {
-	init();
 });

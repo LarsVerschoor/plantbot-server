@@ -1,13 +1,11 @@
-const express = require('express');
-const router = express.Router();
-const unauthenticatedMiddleware = require('../middlewares/unauthenticated');
+const router = require('express').Router();
 const csrfProtectionMiddleware = require('../middlewares/csrf-protection');
-const verifyAccountController = require('../controllers/verify-account-controller');
+const unauthenticatedMiddleware = require('../middlewares/unauthenticated');
+const hasPendingRegistrationMiddleware = require('../middlewares/pendingRegistration')(true);
+const { viewVerificationController, checkVerificationController } = require('../controllers/verify-account-controller');
 
-router.get('/*', unauthenticatedMiddleware, (req, res) => {
-	res.render('authentication/verify-account', { layout: 'layouts/default-layout', title: 'Register', csrfToken: req.session.csrfToken });
-});
+router.get('/', unauthenticatedMiddleware, hasPendingRegistrationMiddleware, viewVerificationController);
 
-router.post('/:uuid', unauthenticatedMiddleware, csrfProtectionMiddleware, verifyAccountController);
+router.post('/', unauthenticatedMiddleware, hasPendingRegistrationMiddleware, csrfProtectionMiddleware, checkVerificationController);
 
 module.exports = router;

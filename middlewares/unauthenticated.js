@@ -1,5 +1,5 @@
 const unauthenticated = (req, res, next) => {
-	if (req.session.userId !== null) {
+	if (req.session.user) {
 		res.redirect('/');
 		return;
 	}

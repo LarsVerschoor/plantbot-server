@@ -27,7 +27,18 @@ module.exports = {
 					key: 'id'
 				},
 				onUpdate: 'CASCADE',
-				onDelete: 'CASCADE'
+				onDelete: 'SET NULL'
+			},
+			registrationId: {
+				allowNull: true,
+				defaultValue: null,
+				type: Sequelize.BIGINT,
+				references: {
+					model: 'pendingRegistrations',
+					key: 'id'
+				},
+				onUpdate: 'CASCADE',
+				onDelete: 'SET NULL'
 			},
 			expiresAt: {
 				allowNull: false,

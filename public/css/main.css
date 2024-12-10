@@ -1,7 +1,189 @@
+:root {
+    --color-background: #FAF8F4;
+    --color-white: #FFFFFF;
+    --color-black: #111111;
+    --color-gray: #505050;
+    --color-green-dark: #059F19;
+    --color-green-light: #07E424;
+    --color-red-dark: #9F0505;
+    --color-red-light: #E40707;
+
+    --font-family: "Open Sans", sans-serif;
+
+    --border-radius: .5rem;
+
+    --box-shadow: .125rem .125rem .5rem 0 #d4d4d4;
+}
+
 * {
     box-sizing: border-box;
 }
 
+@media(max-width: 500px) {
+    html {
+        font-size: .9rem;
+    }
+}
+
 body {
     margin: 0;
+    font-family: var(--font-family);
+    background-color: var(--color-background);
+    color: var(--color-black);
+}
+
+main {
+    min-height: 100svh;
+}
+
+button,
+input {
+    font-size: 1rem;
+}
+
+input[type='checkbox'] {
+    accent-color: var(--color-green-dark);
+    width: 1.125rem;
+    height: 1.125rem;
+    margin: 0;
+}
+
+input[type='checkbox'],
+label.checkbox {
+    cursor: pointer;
+}
+
+a {
+    color: var(--color-green-dark);
+    border-radius: var(--border-radius);
+}
+
+a:hover {
+    color: var(--color-green-light);
+}
+
+button:focus-visible,
+input:focus-visible,
+a:focus-visible {
+    outline: none;
+    box-shadow:
+    0 0 0 2px var(--color-white),
+    0 0 0 4px var(--color-green-dark);
+}
+
+/* authentication */
+
+main:has(section.authentication) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section.authentication {
+    background-color: var(--color-white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 2rem;
+    max-width: 46ch;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 1.5rem;
+}
+
+.authentication__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .6rem;
+}
+
+.authentication__logo {
+    width: 15rem;
+}
+
+@media(max-width: 400px) {
+    .authentication__logo {
+        width: 14rem;
+    }
+}
+
+@media(max-width: 350px) {
+    .authentication__logo {
+        width: 13rem;
+    }
+}
+
+.authentication__instructions {
+    color: var(--color-gray);
+    font-weight: 700;
+    text-align: center;
+}
+
+.authentication__body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.125rem;
+}
+
+.authentication__error {
+    color: var(--color-red-dark);
+}
+
+.authentication__error:empty {
+    display: none;
+}
+
+.authentication__form-row label:not(.checkbox) {
+    display: block;
+    font-weight: 700;
+    margin-bottom: .25rem;
+}
+
+.authentication__form-row label.checkbox {
+    font-weight: 600;
+    color: var(--color-gray);
+    padding-left: 1rem;
+}
+
+.authentication__form-row:has(input[name='verification']) label {
+    color: var(--color-gray);
+}
+
+.authentication__form-row:has(input[name='verification']) label span {
+    color: var(--color-green-dark);
+    font-weight: 800;
+}
+
+.authentication__form-row:has(input[type='checkbox']) {
+    display: flex;
+    align-items: center;
+}
+
+.authentication__form-row input[type='text'],
+.authentication__form-row input[type='password'],
+.authentication__submit {
+    border: 2px solid var(--color-gray);
+    display: block;
+    width: 100%;
+    min-width: 18ch;
+    padding: .7rem;
+    border-radius: var(--border-radius);
+}
+
+.authentication__submit {
+    background-color: var(--color-green-dark);
+    border-color: var(--color-green-dark);
+    color: var(--color-white);
+    cursor: pointer;
+}
+
+.authentication__submit:hover {
+    background-color: var(--color-green-light);
+    border-color: var(--color-green-light);
+}
+
+.authentication__link {
+    font-weight: 600;
 }
